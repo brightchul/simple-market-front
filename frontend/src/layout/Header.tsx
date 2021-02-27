@@ -3,22 +3,28 @@ import styled from "styled-components";
 import { GNB, MyText } from "../component";
 import { Domain } from "@material-ui/icons";
 
-const HeaderWrapper = styled.div``;
-
 const Divider = styled.div`
-  border: 2px solid #fff;
-  width: 1px;
+  border: 1px solid #fff;
+  width: 0px;
   margin: 0 32px;
 `;
 
-const RightMenuWrapper = styled.div``;
+const RightMenuWrapper = styled.div`
+  display: flex;
+`;
+
+const LeftSide = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const RightMenu: React.FC = () => {
   return (
     <RightMenuWrapper>
-      <div>
-        <Domain>123</Domain>
+      <LeftSide>
+        <Domain style={{ fontSize: 15, marginRight: 8 }}>123</Domain>
         <MyText myfont="14pt-500">가공 업체</MyText>
-      </div>
+      </LeftSide>
       <Divider />
       <div>
         <MyText myfont="14pt-500">로그아웃</MyText>
@@ -26,6 +32,8 @@ const RightMenu: React.FC = () => {
     </RightMenuWrapper>
   );
 };
+
+const HeaderWrapper = styled.div``;
 
 const Header: React.FC = () => {
   return (
