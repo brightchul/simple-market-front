@@ -1,10 +1,17 @@
 import { MyBox, MyCard, MyText } from "../../component";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
 import { theme } from "asset/style";
+import { RequestDataContext, RequestData } from "./DashBoardContext";
 
-const RequestCard: React.FC = () => {
+interface RequestCardProps {
+  data: RequestData;
+}
+
+const RequestCard: React.FC<RequestCardProps> = ({
+  data: { title, client, due, amount, count, id, material, method, status },
+}) => {
   return (
     <MyCard
       border="1px solid #E5E5E5"
@@ -13,8 +20,15 @@ const RequestCard: React.FC = () => {
       hoverShadow={`0 0 0px 2px ${theme.color.primary500}`}
     >
       <RequestCardContentWrapper>
-        <RequestHeader />
-        <RequestDetail />
+        <RequestHeader title={title} client={client} due={due} />
+        <RequestDetail
+          id={id}
+          amount={amount}
+          count={count}
+          method={method}
+          status={status}
+          material={material}
+        />
         <RequestAction />
       </RequestCardContentWrapper>
     </MyCard>
@@ -33,19 +47,29 @@ const RequestCardContentWrapper = styled.div`
 
 const RequestHeaderWrapper = styled.div``;
 
-const RequestHeader: React.FC = () => {
+interface RequestHeaderProps {
+  title: string;
+  client: string;
+  due: string;
+}
+
+const RequestHeader: React.FC<RequestHeaderProps> = ({
+  title,
+  client,
+  due,
+}) => {
   return (
     <RequestHeaderWrapper>
-      <MyText myFont="16pt-600">자동차 시제품 제작</MyText>
+      <MyText myFont="16pt-600">{title}</MyText>
       <MyText myFont="14pt-500" style={{ margin: "4px 0 0 0" }}>
-        A 고객사
+        {client}
       </MyText>
       <MyText
         myColor="gray600"
         myFont="14pt-400"
         style={{ margin: "24px 0 0 0" }}
       >
-        2020.12.14까지 납기
+        {due}까지 납기
       </MyText>
       <Divider />
     </RequestHeaderWrapper>
@@ -71,7 +95,21 @@ const RequestOneDetail = styled.li`
   display: flex;
 `;
 
-const RequestDetail: React.FC = () => {
+interface RequestDetailProps {
+  id: string;
+  amount: string;
+  count: string;
+  method: string[];
+  status: string;
+  material: string[];
+}
+
+const RequestDetail: React.FC<RequestDetailProps> = ({
+  amount,
+  count,
+  method,
+  material,
+}) => {
   return (
     <RequestDetailWrapper>
       <RequestOneDetailWrapper>
@@ -83,7 +121,7 @@ const RequestDetail: React.FC = () => {
             도면개수
           </MyText>
           <MyText myFont="14pt-600" style={{ flexGrow: 1 }}>
-            10개
+            {count}
           </MyText>
         </RequestOneDetail>
         <RequestOneDetail>
@@ -94,7 +132,7 @@ const RequestDetail: React.FC = () => {
             총 수량
           </MyText>
           <MyText myFont="14pt-600" style={{ flexGrow: 1 }}>
-            10개
+            {amount}
           </MyText>
         </RequestOneDetail>
         <RequestOneDetail>
@@ -105,7 +143,7 @@ const RequestDetail: React.FC = () => {
             가공방식
           </MyText>
           <MyText myFont="14pt-600" style={{ flexGrow: 1 }}>
-            밀링, 선반
+            {method.join(", ")}
           </MyText>
         </RequestOneDetail>
         <RequestOneDetail>
@@ -116,7 +154,7 @@ const RequestDetail: React.FC = () => {
             재료
           </MyText>
           <MyText myFont="14pt-600" style={{ flexGrow: 1 }}>
-            알루미늄
+            {material.join(", ")}
           </MyText>
         </RequestOneDetail>
       </RequestOneDetailWrapper>
@@ -131,6 +169,8 @@ const Divider = styled.div`
 `;
 
 const RequestList: React.FC = () => {
+  const requestData = useContext(RequestDataContext);
+
   return (
     <RequestListWrapper>
       <MyBox
@@ -140,10 +180,12 @@ const RequestList: React.FC = () => {
           gap: "16px",
         }}
       >
-        <RequestCard></RequestCard>
-        <RequestCard></RequestCard>
-        <RequestCard></RequestCard>
-        <RequestCard></RequestCard>
+        {requestData.map((data: RequestData) => (
+          <RequestCard
+            key={`${data.id}-${data.client}-${data.due}`}
+            data={data}
+          ></RequestCard>
+        ))}
       </MyBox>
     </RequestListWrapper>
   );

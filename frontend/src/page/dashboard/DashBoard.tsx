@@ -3,15 +3,18 @@ import React from "react";
 import SearchRequest from "./RequestFilter";
 import { MyContainer } from "component";
 import RequestList from "./RequestList";
+import { RequestDataProvider } from "./DashBoardContext";
 
 const DashBoard: React.FC = () => {
   return (
-    <Main>
-      <MyContainer>
-        <SearchRequest />
-        <RequestList />
-      </MyContainer>
-    </Main>
+    <RequestDataProvider>
+      <Main>
+        <MyContainer>
+          <SearchRequest />
+          <RequestList />
+        </MyContainer>
+      </Main>
+    </RequestDataProvider>
   );
 };
 
