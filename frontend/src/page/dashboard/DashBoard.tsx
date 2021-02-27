@@ -1,10 +1,16 @@
 import { Main } from "../../layout";
 import React from "react";
+import SearchRequest from "./RequestFilter";
+import { MyContainer } from "component";
+import RequestList from "./RequestList";
 
 const DashBoard: React.FC = () => {
   return (
     <Main>
-      <div>메인페이지입니다.</div>
+      <MyContainer>
+        <SearchRequest />
+        <RequestList />
+      </MyContainer>
     </Main>
   );
 };

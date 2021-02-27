@@ -23,11 +23,15 @@ const RightMenu: React.FC = () => {
     <RightMenuWrapper>
       <LeftSide>
         <Domain style={{ fontSize: 15, marginRight: 8 }}>123</Domain>
-        <MyText myfont="14pt-500">가공 업체</MyText>
+        <MyText myFont="14pt-500" myColor="gray000">
+          가공 업체
+        </MyText>
       </LeftSide>
       <Divider />
       <div>
-        <MyText myfont="14pt-500">로그아웃</MyText>
+        <MyText myFont="14pt-500" myColor="gray000">
+          로그아웃
+        </MyText>
       </div>
     </RightMenuWrapper>
   );
@@ -39,7 +43,7 @@ const Header: React.FC = () => {
   return (
     <HeaderWrapper>
       <GNB>
-        <img src="/image/title1.png" />
+        <img src="/image/title1.png" alt="CAPA 파트너스" />
         <RightMenu />
       </GNB>
     </HeaderWrapper>

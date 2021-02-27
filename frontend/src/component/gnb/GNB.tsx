@@ -1,4 +1,4 @@
-import { Toolbar, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import styled from "styled-components";
 import React from "react";
 
@@ -17,7 +17,7 @@ const GNBBox = styled(Box)`
 `;
 
 const GNB: React.FC = ({ children }) => {
-  return <GNBBox boxShadow={3}>{children}</GNBBox>;
+  return <GNBBox boxShadow={2}>{children}</GNBBox>;
 };
 
 export { GNB };

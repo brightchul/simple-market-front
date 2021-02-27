@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MyFontColor, theme } from "../../asset/style";
 
 interface FontProps {
   fontFamily: string;
@@ -86,14 +87,16 @@ export const myFontStyle: ThemeFont = {
 };
 
 interface MyTextProps {
-  myfont: keyof ThemeFont;
+  myColor?: keyof MyFontColor;
+  myFont: keyof ThemeFont;
 }
 
 const MyText = styled.div<MyTextProps>`
-  font-family: ${({ myfont }) => myFontStyle[myfont].fontFamily};
-  font-weight: ${({ myfont }) => myFontStyle[myfont].fontweight};
-  font-size: ${({ myfont }) => myFontStyle[myfont].fontSize};
-  line-height: ${({ myfont }) => myFontStyle[myfont].lineHeight};
+  color: ${({ myColor = "gray900" }) => theme.color[myColor]};
+  font-family: ${({ myFont }) => myFontStyle[myFont].fontFamily};
+  font-weight: ${({ myFont }) => myFontStyle[myFont].fontweight};
+  font-size: ${({ myFont }) => myFontStyle[myFont].fontSize};
+  line-height: ${({ myFont }) => myFontStyle[myFont].lineHeight};
 `;
 
 export { MyText };
