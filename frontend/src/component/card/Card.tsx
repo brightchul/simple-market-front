@@ -1,14 +1,33 @@
-import { Card } from "@material-ui/core";
+import { Card, CardContent } from "@material-ui/core";
 import styled from "styled-components";
 import React from "react";
 
-const CustomCard = styled(Card)``;
-const CardWrapper = styled.div``;
+interface MyCardProps {
+  height?: string;
+  width?: string;
+  border?: string;
+  hoverShadow?: string;
+}
 
-const MyCard: React.FC = () => {
+const CustomCard = styled.div`
+  box-shadow: none;
+  width: inherit;
+  height: inherit;
+`;
+const CardWrapper = styled.div<MyCardProps>`
+  border-radius: 4px;
+  border: ${({ border }) => border};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  &:hover {
+    box-shadow: ${({ hoverShadow }) => hoverShadow};
+  }
+`;
+
+const MyCard: React.FC<MyCardProps> = ({ children, ...props }) => {
   return (
-    <CardWrapper>
-      <CustomCard>test</CustomCard>
+    <CardWrapper {...props}>
+      <CustomCard>{children}</CustomCard>
     </CardWrapper>
   );
 };
