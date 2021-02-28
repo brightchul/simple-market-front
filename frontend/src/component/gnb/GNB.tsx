@@ -17,7 +17,11 @@ const GNBBox = styled(Box)`
 `;
 
 const GNB: React.FC = ({ children }) => {
-  return <GNBBox boxShadow={2}>{children}</GNBBox>;
+  return (
+    <GNBBox boxShadow={2} height="70px">
+      {children}
+    </GNBBox>
+  );
 };
 
 export { GNB };
