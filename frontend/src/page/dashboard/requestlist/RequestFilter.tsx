@@ -1,17 +1,43 @@
 import { MyBox, MyText } from "component";
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { Box, Button, Menu, MenuList, Switch } from "@material-ui/core";
+import { Box, Button, Switch } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
 import { theme } from "asset/style";
-import {
-  FilterDataWithStatus,
-  FilterDataContext,
-  FilterStandardContext,
-} from "../DashBoardContext";
+import { FilterDataContext, FilterStandardContext } from "../DashBoardContext";
 import { useState } from "react";
+import {
+  useConsultatationToggle,
+  useResetFilterData,
+  useUpdateFilterData,
+} from "hook";
+
+const RequestFilter: React.FC = () => {
+  return (
+    <RequestFilterWrapper>
+      <MyBox>
+        <Subject>
+          <MyText myFont="20pt-600">들어온 요청</MyText>
+          <MyText myFont="16pt-400">
+            파트너님에게 딱 맞는 요청서를 찾아보세요.
+          </MyText>
+        </Subject>
+        <EmptyWrapper />
+
+        <FilteringWrapper>
+          <FilterMenuWrapper>
+            <MethodFilter />
+            <MaterialFilter />
+            <ResetFilter />
+          </FilterMenuWrapper>
+          <ConsultationToggle />
+        </FilteringWrapper>
+      </MyBox>
+    </RequestFilterWrapper>
+  );
+};
 
 const RequestFilterWrapper = styled.div`
   min-height: 120px;
@@ -43,41 +69,9 @@ const ConsultationToggleWrapper = styled.div`
   }
 `;
 
-const RequestFilter: React.FC = () => {
-  return (
-    <RequestFilterWrapper>
-      <MyBox>
-        <Subject>
-          <MyText myFont="20pt-600">들어온 요청</MyText>
-          <MyText myFont="16pt-400">
-            파트너님에게 딱 맞는 요청서를 찾아보세요.
-          </MyText>
-        </Subject>
-        <EmptyWrapper />
-
-        <FilteringWrapper>
-          <FilterMenuWrapper>
-            <MethodFilter />
-            <MaterialFilter />
-            <ResetFilter />
-          </FilterMenuWrapper>
-          <ConsultationToggle />
-        </FilteringWrapper>
-      </MyBox>
-    </RequestFilterWrapper>
-  );
-};
-
 const ConsultationToggle: React.FC = () => {
-  const { filterData, setFilterData } = useContext(FilterDataContext);
-  const toggleStatus = useCallback(() => {
-    setFilterData({
-      ...filterData,
-      ...{ statusFlag: !filterData.statusFlag },
-    });
-  }, [filterData]);
+  const [toggleStatus] = useConsultatationToggle();
 
-  console.log(filterData.statusFlag);
   return (
     <ConsultationToggleWrapper>
       <Switch onClick={toggleStatus}></Switch>
@@ -102,13 +96,7 @@ const ResetFilterWrapper = styled.div`
 `;
 
 const ResetFilter: React.FC = () => {
-  const { filterData, setFilterData } = useContext(FilterDataContext);
-
-  const resetFilterData = useCallback(() => {
-    const newOne = FilterDataWithStatus.create();
-    newOne.statusFlag = filterData.statusFlag;
-    setFilterData(newOne);
-  }, [filterData]);
+  const [resetFilterData] = useResetFilterData();
 
   return (
     <ResetFilterWrapper onClick={resetFilterData}>
@@ -233,25 +221,7 @@ interface FilterOneLineProps {
 }
 
 const FilterOneLine: React.FC<FilterOneLineProps> = ({ data, type }) => {
-  const { filterData, setFilterData } = useContext(FilterDataContext);
-
-  const updateFilterData = useCallback(() => {
-    const idx = filterData[type].indexOf(data);
-    if (idx === -1) {
-      setFilterData({
-        ...filterData,
-        [type]: [...filterData[type], data],
-      });
-    } else {
-      const newOne = filterData[type].concat();
-      newOne.splice(idx, 1);
-
-      setFilterData({
-        ...filterData,
-        ...{ [type]: newOne },
-      });
-    }
-  }, [filterData]);
+  const [filterData, updateFilterData] = useUpdateFilterData(type, data);
 
   return (
     <FilterLi onClick={updateFilterData}>

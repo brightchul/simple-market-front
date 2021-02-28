@@ -6,9 +6,7 @@ import { RequestData } from "../DashBoardContext";
 import { RequestAction } from "./RequestAction";
 import RequestDetail from "./RequestDetail";
 
-const RequestCard: React.FC<RequestCardProps> = ({
-  data: { title, client, due, amount, count, id, material, method, status },
-}) => {
+const RequestCard: React.FC<RequestCardProps> = ({ data }) => {
   return (
     <MyCard
       border="1px solid #E5E5E5"
@@ -17,20 +15,8 @@ const RequestCard: React.FC<RequestCardProps> = ({
       hoverShadow={`0 0 0px 2px ${theme.color.primary500}`}
     >
       <RequestCardContentWrapper>
-        <RequestHeader
-          title={title}
-          client={client}
-          due={due}
-          status={status}
-        />
-        <RequestDetail
-          id={id}
-          amount={amount}
-          count={count}
-          method={method}
-          status={status}
-          material={material}
-        />
+        <RequestHeader {...data} />
+        <RequestDetail {...data} />
         <RequestAction />
       </RequestCardContentWrapper>
     </MyCard>

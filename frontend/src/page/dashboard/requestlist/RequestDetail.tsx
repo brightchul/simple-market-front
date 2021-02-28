@@ -2,34 +2,6 @@ import { MyText } from "component";
 import React from "react";
 import styled from "styled-components";
 
-const RequestDetailWrapper = styled.div`
-  text-align: left;
-  margin-top: 32px;
-`;
-
-const RequestOneDetailWrapper = styled.ul<{}>(() => {
-  return {
-    width: "100%",
-    display: "inline-flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    gap: "8px",
-  };
-});
-
-const RequestOneDetail = styled.li`
-  display: flex;
-`;
-
-interface RequestDetailProps {
-  id: string;
-  amount: string;
-  count: string;
-  method: string[];
-  status: string;
-  material: string[];
-}
-
 const RequestDetail: React.FC<RequestDetailProps> = ({
   amount,
   count,
@@ -87,6 +59,34 @@ const RequestDetail: React.FC<RequestDetailProps> = ({
     </RequestDetailWrapper>
   );
 };
+
+const RequestDetailWrapper = styled.div`
+  text-align: left;
+  margin-top: 32px;
+`;
+
+const RequestOneDetailWrapper = styled.ul<{}>(() => {
+  return {
+    width: "100%",
+    display: "inline-flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    gap: "8px",
+  };
+});
+
+const RequestOneDetail = styled.li`
+  display: flex;
+`;
+
+interface RequestDetailProps {
+  id: string;
+  amount: string;
+  count: string;
+  method: string[];
+  status: string;
+  material: string[];
+}
 
 export { RequestDetail };
 export default RequestDetail;

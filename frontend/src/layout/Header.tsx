@@ -69,7 +69,7 @@ const Header: React.FC = () => {
       <Drawer anchor={"left"} open={sideBarFlag} onClose={toggleSideBar}>
         <List style={{ width: "280px" }}>
           <ListSubheader>
-            <img src="/image/title_color.png" />
+            <img src="/image/title_color.png" alt="CAPA 파트너스" />
           </ListSubheader>
           <DividerMui />
           <ListItem>

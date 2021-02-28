@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { fetchGet } from "util/api";
 
 export interface RequestData {
   id: string;
@@ -19,8 +20,8 @@ export interface IFilterData {
 }
 
 export class FilterData implements IFilterData {
-  public method = [];
-  public material = [];
+  public method: string[] = [];
+  public material: string[] = [];
 
   static create() {
     return new this();
@@ -32,8 +33,8 @@ export interface FilterDataWidthStatus extends IFilterData {
 }
 
 export class FilterDataWithStatus implements FilterDataWidthStatus {
-  public method = [];
-  public material = [];
+  public method: string[] = [];
+  public material: string[] = [];
   public statusFlag = false;
 
   static create() {
@@ -62,14 +63,13 @@ export const useRequestData = () => {
   );
 
   React.useEffect(() => {
-    const fetchGet = async (url: string, setter: any) => {
-      const result: RequestData[] = await fetch(url).then((res) => res.json());
-      setter(result);
-    };
-
     Promise.all([
-      fetchGet("http://localhost:3001/requests", setRequestData),
-      fetchGet("http://localhost:3001/filter", setFilterStandard),
+      fetchGet<RequestData[]>("http://localhost:3001/requests").then(
+        setRequestData
+      ),
+      fetchGet<FilterData>("http://localhost:3001/filter").then(
+        setFilterStandard
+      ),
     ]);
   }, []);
 

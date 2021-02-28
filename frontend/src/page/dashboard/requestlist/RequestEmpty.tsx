@@ -1,4 +1,4 @@
-import { MyText } from "../../../component";
+import { MyText } from "component";
 import React from "react";
 import styled from "styled-components";
 
