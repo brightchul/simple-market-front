@@ -20,6 +20,9 @@ const RequestList: React.FC = () => {
   const filterFunction = useCallback(
     (data: RequestData) => {
       // material
+      let checkStatus =
+        filterData.statusFlag === false || data.status === "상담중";
+
       let checkMaterial =
         filterData.material.length === 0 ||
         data.material.some((oneMaterial) =>
@@ -31,16 +34,17 @@ const RequestList: React.FC = () => {
         filterData.method.length === 0 ||
         data.method.some((oneMethod) => filterData.method.includes(oneMethod));
 
-      return checkMaterial && checkMethod;
+      return checkStatus && checkMaterial && checkMethod;
     },
-
     [filterData]
   );
 
+  const renderData = requestData.filter(filterFunction);
+
   return (
     <RequestListWrapper>
-      {requestData.length === 0 && <RequestEmpty />}
-      {requestData.length > 0 && (
+      {renderData.length === 0 && <RequestEmpty />}
+      {renderData.length > 0 && (
         <MyBox
           style={{
             display: "inline-flex",
@@ -49,7 +53,7 @@ const RequestList: React.FC = () => {
             justifyContent: "space-evenly",
           }}
         >
-          {requestData.filter(filterFunction).map((data: RequestData) => (
+          {renderData.map((data: RequestData) => (
             <RequestCard
               key={`${data.id}-${data.client}-${data.due}`}
               data={data}

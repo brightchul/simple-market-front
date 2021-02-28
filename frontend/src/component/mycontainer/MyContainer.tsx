@@ -8,7 +8,7 @@ const CustomContainer = styled(Container)`
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 40px;
   }
 `;
 const ContainerWrapper = styled.div``;

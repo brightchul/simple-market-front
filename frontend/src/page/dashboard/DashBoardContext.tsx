@@ -27,6 +27,20 @@ export class FilterData implements IFilterData {
   }
 }
 
+export interface FilterDataWidthStatus extends IFilterData {
+  statusFlag: boolean;
+}
+
+export class FilterDataWithStatus implements FilterDataWidthStatus {
+  public method = [];
+  public material = [];
+  public statusFlag = false;
+
+  static create() {
+    return new this();
+  }
+}
+
 export const RequestDataContext: React.Context<
   RequestData[]
 > = React.createContext([] as RequestData[]);
@@ -66,7 +80,7 @@ export const RequestDataProvider: React.FC<RequestDataProviderProps> = ({
   children,
 }) => {
   const [requestData, filterStandard] = useRequestData();
-  const [filterData, setFilterData] = useState(FilterData.create());
+  const [filterData, setFilterData] = useState(FilterDataWithStatus.create());
 
   return (
     <RequestDataContext.Provider value={requestData as RequestData[]}>

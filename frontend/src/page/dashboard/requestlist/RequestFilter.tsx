@@ -7,7 +7,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 
 import { theme } from "asset/style";
 import {
-  FilterData,
+  FilterDataWithStatus,
   FilterDataContext,
   FilterStandardContext,
 } from "../DashBoardContext";
@@ -61,19 +61,35 @@ const RequestFilter: React.FC = () => {
             <MaterialFilter />
             <ResetFilter />
           </FilterMenuWrapper>
-          <ConsultationToggleWrapper>
-            <Switch></Switch>
-            <MyText myFont="14pt-500">상담중인 요청만 보기</MyText>
-          </ConsultationToggleWrapper>
+          <ConsultationToggle />
         </FilteringWrapper>
       </MyBox>
     </RequestFilterWrapper>
   );
 };
 
+const ConsultationToggle: React.FC = () => {
+  const { filterData, setFilterData } = useContext(FilterDataContext);
+  const toggleStatus = useCallback(() => {
+    setFilterData({
+      ...filterData,
+      ...{ statusFlag: !filterData.statusFlag },
+    });
+  }, [filterData]);
+
+  console.log(filterData.statusFlag);
+  return (
+    <ConsultationToggleWrapper>
+      <Switch onClick={toggleStatus}></Switch>
+      <MyText myFont="14pt-500">상담중인 요청만 보기</MyText>
+    </ConsultationToggleWrapper>
+  );
+};
+
 const MethodFilterWrapper = styled.div`
   margin-right: 8px;
   position: relative;
+  z-index: 3;
 `;
 
 const ResetFilterWrapper = styled.div`
@@ -86,11 +102,13 @@ const ResetFilterWrapper = styled.div`
 `;
 
 const ResetFilter: React.FC = () => {
-  const { setFilterData } = useContext(FilterDataContext);
+  const { filterData, setFilterData } = useContext(FilterDataContext);
 
   const resetFilterData = useCallback(() => {
-    setFilterData(FilterData.create());
-  }, []);
+    const newOne = FilterDataWithStatus.create();
+    newOne.statusFlag = filterData.statusFlag;
+    setFilterData(newOne);
+  }, [filterData]);
 
   return (
     <ResetFilterWrapper onClick={resetFilterData}>
@@ -105,7 +123,7 @@ const ResetFilter: React.FC = () => {
 const MethodFilter: React.FC = () => {
   const filterStandard = useContext(FilterStandardContext);
   const { filterData } = useContext(FilterDataContext);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <MethodFilterWrapper>
@@ -157,12 +175,13 @@ const FilterBox = styled(Box)`
 
 const MaterialFilterWrapper = styled.div`
   position: relative;
+  z-index: 3;
 `;
 
 const MaterialFilter: React.FC = () => {
   const filterStandard = useContext(FilterStandardContext);
   const { filterData } = useContext(FilterDataContext);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <MaterialFilterWrapper>
