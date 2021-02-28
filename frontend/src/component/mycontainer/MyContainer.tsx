@@ -5,18 +5,22 @@ import React from "react";
 const CustomContainer = styled(Container)`
   margin-top: 40px;
   && {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 0;
     padding-bottom: 0;
   }
 `;
 const ContainerWrapper = styled.div``;
 
-const MyContainer: React.FC = ({ children }) => {
+interface MyContainerProps {
+  maxWidth?: string;
+}
+
+const MyContainer: React.FC<MyContainerProps> = ({ maxWidth, children }) => {
   return (
     <ContainerWrapper>
-      <CustomContainer style={{ maxWidth: "1130px" }}>
+      <CustomContainer style={{ maxWidth: maxWidth }}>
         {children || ""}
       </CustomContainer>
     </ContainerWrapper>

@@ -1,16 +1,16 @@
 import { Main } from "../../layout";
 import React from "react";
-import SearchRequest from "./RequestFilter";
+import { RequestFilter } from "./requestlist";
 import { MyContainer } from "component";
-import RequestList from "./RequestList";
+import { RequestList } from "./requestlist";
 import { RequestDataProvider } from "./DashBoardContext";
 
 const DashBoard: React.FC = () => {
   return (
     <RequestDataProvider>
       <Main>
-        <MyContainer>
-          <SearchRequest />
+        <MyContainer maxWidth="1170px">
+          <RequestFilter />
           <RequestList />
         </MyContainer>
       </Main>

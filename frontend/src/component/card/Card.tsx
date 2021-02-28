@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@material-ui/core";
 import styled from "styled-components";
 import React from "react";
 
@@ -21,6 +20,11 @@ const CardWrapper = styled.div<MyCardProps>`
   height: ${({ height }) => height};
   &:hover {
     box-shadow: ${({ hoverShadow }) => hoverShadow};
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 100%;
   }
 `;
 

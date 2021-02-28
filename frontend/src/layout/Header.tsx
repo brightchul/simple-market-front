@@ -11,6 +11,9 @@ const Divider = styled.div`
 
 const RightMenuWrapper = styled.div`
   display: flex;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const LeftSide = styled.div`
