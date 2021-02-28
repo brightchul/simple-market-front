@@ -230,7 +230,7 @@ const FilterOneLine: React.FC<FilterOneLineProps> = ({ data, type }) => {
         readOnly
         checked={filterData[type].includes(data)}
       />
-      {data}
+      <MyText myFont="14pt-500">{data}</MyText>
     </FilterLi>
   );
 };
