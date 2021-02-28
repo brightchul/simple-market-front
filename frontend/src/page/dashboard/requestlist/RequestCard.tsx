@@ -57,17 +57,23 @@ const RequestHeader: React.FC<RequestHeaderProps> = ({
       <MyText myFont="14pt-500" style={{ margin: "4px 0 0 0" }}>
         {client}
       </MyText>
-      <MyText
-        myColor="gray600"
-        myFont="14pt-400"
-        style={{ margin: "24px 0 0 0" }}
-      >
-        {due}까지 납기
-      </MyText>
+      <DueDateWrapper>
+        <MyText myColor="gray600" myFont="14pt-400">
+          {due}까지 납기
+        </MyText>
+      </DueDateWrapper>
       <Divider />
     </RequestHeaderWrapper>
   );
 };
+
+const DueDateWrapper = styled.div`
+  margin-top: 24px;
+
+  @media (max-width: 520px) {
+    margin-top: 12px;
+  }
+`;
 
 const RequestStatusWrapper = styled.div`
   position: absolute;

@@ -6,11 +6,16 @@ import Drawer from "@material-ui/core/Drawer";
 import DividerMui from "@material-ui/core/Divider";
 
 import { Domain } from "@material-ui/icons";
-import { List, ListItem, ListSubheader } from "@material-ui/core";
+import { List, ListSubheader } from "@material-ui/core";
 
 const MyList = styled.li`
+  user-select: none;
+  cursor: pointer;
   padding: 12px 32px;
   width: 100%;
+  :hover {
+    background-color: #eee;
+  }
 `;
 
 const Header: React.FC = () => {
@@ -54,12 +59,12 @@ const Header: React.FC = () => {
                   marginBottom: "-2px",
                 }}
               ></Domain>
-              <a href="#">파트너정밀가공</a>
+              파트너정밀가공
             </MyText>
           </MyList>
           <MyList>
             <MyText myFont="14pt-500" myColor="gray900">
-              <a href="#">로그아웃</a>
+              로그아웃
             </MyText>
           </MyList>
         </List>
@@ -95,21 +100,30 @@ const LeftSide = styled.div`
   align-items: center;
 `;
 
+const RightMenuTextWrapper = styled.div`
+  user-select: none;
+  cursor: pointer;
+  display: inherit;
+  align-items: inherit;
+`;
+
 const RightMenu: React.FC = () => {
   return (
     <RightMenuWrapper>
       <LeftSide>
-        <Domain style={{ fontSize: 15, marginRight: 8 }}></Domain>
-        <MyText myFont="14pt-500" myColor="gray000">
-          <a href="#">가공 업체</a>
-        </MyText>
+        <RightMenuTextWrapper>
+          <Domain style={{ fontSize: 15, marginRight: 8 }}></Domain>
+          <MyText myFont="14pt-500" myColor="gray000">
+            가공 업체
+          </MyText>
+        </RightMenuTextWrapper>
       </LeftSide>
       <MyDivider />
-      <div>
+      <RightMenuTextWrapper>
         <MyText myFont="14pt-500" myColor="gray000">
-          <a href="#">로그아웃</a>
+          로그아웃
         </MyText>
-      </div>
+      </RightMenuTextWrapper>
     </RightMenuWrapper>
   );
 };

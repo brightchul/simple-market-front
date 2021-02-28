@@ -31,10 +31,28 @@ const RequestListWrapper = styled.div`
 `;
 
 const RequestListBox = styled(MyBox)`
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-evenly;
+  display: grid;
+  row-gap: 16px;
+  column-gap: 16px;
+  justify-content: left;
+  grid-template-columns: repeat(3, auto);
+  margin: 0 auto;
+
+  @media (max-width: 1159px) {
+    width: 748px;
+    grid-template-columns: repeat(2, auto);
+  }
+  @media (max-width: 819px) {
+    justify-content: center;
+    width: auto;
+    grid-template-columns: repeat(1, auto);
+  }
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(1, 320px);
+  }
+  @media (max-width: 319px) {
+    grid-template-columns: repeat(1, auto);
+  }
 `;
 
 export { RequestList };
