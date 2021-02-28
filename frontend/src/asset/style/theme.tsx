@@ -6,6 +6,7 @@ interface MyFontColor {
   gray000: string;
   gray600: string;
   gray900: string;
+  warning: string;
 }
 
 interface MyTheme extends DefaultTheme {
@@ -19,6 +20,7 @@ const theme: MyTheme = {
     gray000: "#FFFFFF",
     gray600: "#939FA5",
     gray900: "#323D45",
+    warning: "#FFA000",
   },
 };
 
