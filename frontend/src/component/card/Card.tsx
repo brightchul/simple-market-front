@@ -22,7 +22,7 @@ const CardWrapper = styled.div<MyCardProps>`
     box-shadow: ${({ hoverShadow }) => hoverShadow};
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     width: 100%;
     height: 100%;
   }

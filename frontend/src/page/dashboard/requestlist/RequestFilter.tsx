@@ -21,7 +21,7 @@ const FilteringWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     display: block;
   }
 `;
@@ -37,7 +37,7 @@ const ConsultationToggleWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     margin-top: 20px;
     margin-left: -7px;
   }
