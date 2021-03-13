@@ -2,7 +2,7 @@ import { Main } from "../../layout";
 import React from "react";
 import MyContainer from "component/mycontainer/MyContainer";
 import { MyText } from "component";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Error404: React.FC = () => {
   return (

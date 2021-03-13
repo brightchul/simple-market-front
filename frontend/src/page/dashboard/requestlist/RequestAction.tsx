@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { Button } from "@material-ui/core";
 import { theme } from "asset/style";
 import { MyText } from "component";

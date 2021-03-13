@@ -1,6 +1,6 @@
 import { MyText } from "component";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const RequestEmptyWrapper = styled.div`
   text-align: center;

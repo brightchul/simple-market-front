@@ -1,7 +1,7 @@
 import { MyBox } from "component";
 import { useFilteredData } from "hook";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { RequestData } from "../DashBoardContext";
 import RequestCard from "./RequestCard";
 import RequestEmpty from "./RequestEmpty";

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@emotion/react";
 import App from "./App";
 import { GlobalStyle, theme } from "./asset/style";
 import CssBaseline from "@material-ui/core/CssBaseline";

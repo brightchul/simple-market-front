@@ -1,6 +1,6 @@
 import { MyCard, MyText } from "component";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { theme } from "asset/style";
 import { RequestData } from "../DashBoardContext";
 import { RequestAction } from "./RequestAction";

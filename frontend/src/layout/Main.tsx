@@ -1,7 +1,6 @@
 import Header from "./Header";
 import Section from "./Section";
-
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const MainWrapper = styled.div``;
 

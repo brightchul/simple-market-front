@@ -1,4 +1,12 @@
-import { DefaultTheme } from "styled-components";
+import "@emotion/react";
+import { Theme } from "@emotion/react";
+
+declare module "@emotion/react" {
+  export interface Theme {
+    color: MyColor;
+    font: MyFont;
+  }
+}
 
 interface MyColor {
   primary700: string;
@@ -29,12 +37,7 @@ interface MyFont {
   "roboto-12-500": FontProps;
 }
 
-interface MyTheme extends DefaultTheme {
-  color: MyColor;
-  font: MyFont;
-}
-
-const theme: MyTheme = {
+const theme: Theme = {
   color: {
     primary700: "#1565C0",
     primary500: "#2196F3",
@@ -105,6 +108,6 @@ const theme: MyTheme = {
   },
 };
 
-export type { MyTheme, MyColor, MyFont };
+export type { MyColor, MyFont };
 export { theme };
 export default theme;

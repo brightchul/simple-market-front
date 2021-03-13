@@ -1,11 +1,11 @@
 import { Box } from "@material-ui/core";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import React from "react";
 
 const GNBBox = styled(Box)`
   && {
-    background-color: ${(props) => props.theme.color.primary700};
-    color: ${(props) => props.theme.color.gray000};
+    background-color: ${({ theme }) => theme.color.primary700};
+    color: ${({ theme }) => theme.color.gray000};
     width: 100%;
     padding-top: 25px;
     padding-bottom: 25px;

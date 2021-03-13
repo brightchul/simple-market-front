@@ -1,5 +1,5 @@
 import { Container } from "@material-ui/core";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import React from "react";
 
 const CustomContainer = styled(Container)`

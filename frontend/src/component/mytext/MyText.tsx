@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { MyColor, MyFont } from "../../asset/style";
 
 interface MyTextProps {
