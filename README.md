@@ -1,17 +1,19 @@
-# 에이팀벤처스 과제 테스트
+# SimpleMarketFront for test
+
+​                      
+
+## Getting Started
 
 
-## 실행방법
-
-1. 압축 파일 또는 첨부한 git clone을 받은 다음에 해당 디렉토리로 들어갑니다.
-2. backend를 세팅 및 시작합니다.
-
+### mock data api server
 ```
 cd backend
 npm ci && npm start
 ```
 
-3. 다른 터미널창 또는 다른 터미널 세션으로 frontend를 세팅 및 시작합니다.
+​                                    
+
+### frontend setting
 
 ```
 cd frontend
@@ -21,7 +23,7 @@ npm start
 
 ​         
 
-## src 디렉토리 구조
+## src directory structure
 
 ```
 ├── App.tsx
